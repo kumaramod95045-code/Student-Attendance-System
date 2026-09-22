@@ -1,0 +1,362 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Student Attendance System</title>
+
+    <link rel="icon" href="attendancelogo.png">
+    <link rel="stylesheet" href="attendence.css">
+</head>
+
+<body>
+
+
+    <header>
+
+        <div class="herosection">
+
+            <div id="lherosection">
+                <div id="logo"></div>
+                <div>Attendance System</div>
+            </div>
+
+            <div id="rherosection">
+
+                <div id="ticon"></div>
+
+                <select id="teacher">
+                    <option value="" disabled selected>Select Teacher</option>
+                    <option>Shubajit Sir</option>
+                    <option>Mintu Sir</option>
+                    <option>Abha Ma'am</option>
+                    <option>Rajanwit Sir</option>
+                    <option>Pushpalata Ma'am</option>
+                </select>
+
+            </div>
+
+        </div>
+
+    </header>
+
+
+
+
+    <div class="page">
+
+    
+
+        <aside>
+
+            <div class="container">
+
+                <button class="common active" data-page="dashboard">
+                    <div class="cls dashboard-icon"></div>
+                    <span>Dashboard</span>
+                </button>
+
+                <button class="common" data-page="attendance">
+                    <div class="cls attendance-icon"></div>
+                    <span>Attendance</span>
+                </button>
+
+                <button class="common" data-page="students">
+                    <div class="cls student-icon"></div>
+                    <span>Students</span>
+                </button>
+
+                <button class="common" data-page="reports">
+                    <div class="cls report-icon"></div>
+                    <span>Reports</span>
+                </button>
+
+                <button class="common" data-page="low">
+                    <div class="cls warning-icon"></div>
+                    <span>Low Attendance</span>
+                </button>
+
+            </div>
+
+        </aside>
+
+
+        
+
+        <main>
+
+
+            
+
+            <section id="dashboard-page" class="page-section">
+
+                <div class="welcome">
+
+                    <div>
+                        <h1>Welcome, Teacher! 👋</h1>
+                        <p>Here's today's attendance overview.</p>
+                    </div>
+
+                    <div class="date-box">
+                        <label for="dashboard-date">Attendance Date</label>
+                        <input type="date" id="dashboard-date">
+                    </div>
+
+                </div>
+
+
+    
+
+                <div class="containerin">
+
+                    <div class="containerc">
+
+                        <div class="icons student-card-icon"></div>
+
+                        <p>Total Students</p>
+
+                        <h2 id="total-students">0</h2>
+
+                    </div>
+
+
+                    <div class="containerc present-card">
+
+                        <div class="icons present-card-icon"></div>
+
+                        <p>Present</p>
+
+                        <h2 id="present-count">0</h2>
+
+                    </div>
+
+
+                    <div class="containerc absent-card">
+
+                        <div class="icons absent-card-icon"></div>
+
+                        <p>Absent</p>
+
+                        <h2 id="absent-count">0</h2>
+
+                    </div>
+
+                </div>
+
+
+                
+
+                <div class="dashboard-box">
+
+                    <h2>Today's Attendance</h2>
+
+                    <div class="percentage" id="today-percentage">
+                        0%
+                    </div>
+
+                    <p id="attendance-message">
+                        No attendance marked for this date.
+                    </p>
+
+                </div>
+
+
+                
+
+                <div class="dashboard-box warning-box">
+
+                    <h2>⚠️ Low Attendance</h2>
+
+                    <p>
+                        <span id="low-count">0</span>
+                        students are below
+                        <span id="threshold-display">75</span>% attendance.
+                    </p>
+
+                    <button class="view-btn" data-page="low">
+                        View Students
+                    </button>
+
+                </div>
+
+
+                <button class="primary-btn" data-page="attendance">
+                    + Mark Attendance
+                </button>
+
+            </section>
+
+
+
+            
+
+            <section id="attendance-page" class="page-section hidden">
+
+                <h1>Mark Attendance</h1>
+
+                <div class="attendance-controls">
+
+                    <div>
+                        <label for="attendance-date">
+                            Select Date
+                        </label>
+
+                        <input type="date" id="attendance-date">
+                    </div>
+
+                </div>
+
+
+                <div class="attendance-table">
+
+                    <div class="table-heading">
+                        <span>Roll No.</span>
+                        <span>Student Name</span>
+                        <span>Status</span>
+                    </div>
+
+                    <div id="attendance-list"></div>
+
+                </div>
+
+
+                <button id="save-attendance" class="primary-btn">
+                    Save Attendance
+                </button>
+
+                <p id="save-message"></p>
+
+            </section>
+
+
+
+            
+
+            <section id="students-page" class="page-section hidden">
+
+                <div class="section-header">
+
+                    <div>
+                        <h1>Students</h1>
+                        <p>Student attendance overview</p>
+                    </div>
+
+                    <input
+                        type="text"
+                        id="student-search"
+                        placeholder="Search student..."
+                    >
+
+                </div>
+
+
+                <div class="student-table">
+
+                    <div class="table-heading">
+                        <span>Roll No.</span>
+                        <span>Student Name</span>
+                        <span>Attendance</span>
+                    </div>
+
+                    <div id="student-list"></div>
+
+                </div>
+
+            </section>
+
+
+
+            
+
+            <section id="reports-page" class="page-section hidden">
+
+                <h1>Attendance Reports</h1>
+
+                <div class="report-summary">
+
+                    <div>
+                        <p>Total Students</p>
+                        <h2 id="report-total">0</h2>
+                    </div>
+
+                    <div>
+                        <p>Average Attendance</p>
+                        <h2 id="average-attendance">0%</h2>
+                    </div>
+
+                </div>
+
+
+                <div class="student-table">
+
+                    <div class="table-heading">
+                        <span>Roll No.</span>
+                        <span>Student Name</span>
+                        <span>Present / Total</span>
+                        <span>Percentage</span>
+                    </div>
+
+                    <div id="report-list"></div>
+
+                </div>
+
+            </section>
+
+
+
+            
+
+            <section id="low-page" class="page-section hidden">
+
+                <div class="section-header">
+
+                    <div>
+                        <h1>Low Attendance</h1>
+                        <p>Students below the required attendance</p>
+                    </div>
+
+                    <div class="threshold">
+
+                        <label for="threshold">
+                            Required Attendance
+                        </label>
+
+                        <input
+                            type="number"
+                            id="threshold"
+                            value="75"
+                            min="1"
+                            max="100"
+                        >
+
+                        <span>%</span>
+
+                    </div>
+
+                </div>
+
+
+                <div class="student-table">
+
+                    <div class="table-heading">
+                        <span>Roll No.</span>
+                        <span>Student Name</span>
+                        <span>Attendance</span>
+                    </div>
+
+                    <div id="low-list"></div>
+
+                </div>
+
+            </section>
+
+        </main>
+
+    </div>
+
+
+    <script src="attendence.js"></script>
+
+</body>
+</html>
